@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Karsadiguna Digital - Pusat Aplikasi & Solusi Digital Bisnis Modern</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #030712;
+    color: #f3f4f6;
+    overflow-x: hidden;
+}
+
+/* Latar Belakang Komputerisasi & Sirkuit Tech */
+.tech-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(6, 182, 212, 0.15) 0%, transparent 40%),
+        linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+    background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+    z-index: -2;
+}
+
+/* Efek Bintang Kerlap-Kerlip */
+.stars {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: transparent;
+    z-index: -1;
+}
+.star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    animation: twinkle var(--duration) infinite ease-in-out;
+}
+@keyframes twinkle {
+    0%, 100% { opacity: 0.2; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Aksen Petir Mengkilap Menyapu Halaman */
+.lightning-sweep {
+    position: fixed;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.12), rgba(255, 255, 255, 0.25), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 2;
+    animation: sweepEffect 6s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+@keyframes sweepEffect {
+    0% { left: -150%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* Glassmorphism Card dengan AI Hover Glow */
+.glass-card {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card:hover {
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 0 35px rgba(56, 189, 248, 0.3), inset 0 0 15px rgba(56, 189, 248, 0.1);
+    transform: translateY(-6px);
+}
+
+/* Sinyal Berkedip (Blinking Record) */
+@keyframes blink {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(0.9); }
+}
+.blink-dot {
+    animation: blink 1.5s infinite ease-in-out;
+}
+
+/* Tombol Hidup Mengajak Klik (Pulse Glow) */
+.btn-live-glow {
+    position: relative;
+    overflow: hidden;
+    animation: btnPulse 2s infinite;
+}
+@keyframes btnPulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
+    70% { box-shadow: 0 0 0 14px rgba(37, 99, 235, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+/* Floating AI Robot Mengambang di Kanan Bawah */
+@keyframes floatRobot {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(2deg); }
+}
+.floating-robot {
+    animation: floatRobot 4s ease-in-out infinite;
+}
+</style>
+</head>
+<body class="relative min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+
+    <!-- Efek Latar Belakang Komputerisasi & Petir -->
+    <div class="tech-bg"></div>
+    <div class="stars" id="starfield"></div>
+    <div class="lightning-sweep"></div>
+
+    <!-- Header / Navbar Minimalis dengan Sinyal Record Berkedip -->
+    <header class="relative z-10 w-full py-6 px-6 max-w-7xl mx-auto flex justify-between items-center border-b border-gray-800/80 backdrop-blur-md">
+        <div class="flex items-center space-x-3">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-teal-400 flex items-center justify-center font-extrabold text-xl shadow-lg shadow-cyan-500/40 text-white border border-cyan-300/30">
+                KD
+            </div>
+            <div>
+                <h1 class="font-extrabold text-lg tracking-wider text-white">KARSADIGUNA</h1>
+                <div class="flex items-center space-x-2">
+                    <span class="w-2 h-2 rounded-full bg-red-500 blink-dot inline-block"></span>
+                    <p class="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">AI SYSTEM ONLINE [REC]</p>
+                </div>
+            </div>
+        </div>
+
+        <a href="https://wa.me/6285222952220?text=Halo%20Karsadiguna%20Digital,%20saya%20tertarik%20dengan%20solusi%20aplikasi%20Anda." target="_blank" class="px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-sm font-semibold transition-all shadow-lg shadow-emerald-600/30 flex items-center space-x-2 border border-emerald-400/30">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>WhatsApp Admin</span>
+        </a>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full flex-grow">
+        <!-- Hero Section -->
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 inline-block mb-4 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                ⚡ PUSAT DOWNLOAD APLIKASI & SAAS BERBASIS AI
+            </span>
+            <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+                Koleksi Aplikasi Digital <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-300 bg-clip-text text-transparent">Profesional & Produktif</span>
+            </h2>
+            <p class="text-gray-400 text-base md:text-lg">
+                Pilih dan unduh sistem perangkat lunak bisnis modern berkecepatan tinggi langsung melalui tautan Google Drive resmi di bawah ini.
+            </p>
+        </div>
+
+        <!-- Daftar Produk & Download (5 Aplikasi dengan Gambar & Link Drive Resmi) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            
+            <!-- Produk 1: Presensi Pro -->
+            <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                        <img src="PRESENSI PRO.webp" alt="Presensi Pro" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
+                        <span>Presensi-Pro.ai</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Sistem manajemen kehadiran workforce, payroll, dan barcode divisi otomatis yang dirancang khusus untuk efisiensi operasional skala UMKM maupun perusahaan menengah[cite: 3].
+                    </p>
+                </div>
+                <div>
+                    <a href="https://drive.google.com/drive/folders/1HUh_N93pqCyb2wzZeCJZO-DDeubi-El6?usp=sharing" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Unduh Aplikasi (.apk)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produk 2: NUSA Report Suite (Report Satelite) -->
+            <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                        <img src="REPORT SATELITE.webp" alt="NUSA Report Suite" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
+                        <span>NUSA Report Suite</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Platform checklist tugas operasional dan pelaporan terintegrasi secara real-time yang menghubungkan pekerja lapangan, supervisor, hingga tingkat manajemen puncak[cite: 2].
+                    </p>
+                </div>
+                <div>
+                    <a href="https://drive.google.com/drive/folders/19rOWdBji-JZY2KzlaouVCw0-29imX_Tq?usp=sharing" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Unduh Aplikasi (.apk)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produk 3: QRMenu-Pro -->
+            <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                        <img src="QRMENUPRO.webp" alt="QRMenu-Pro" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
+                        <span>QRMenu-Pro</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Solusi SaaS menu digital berbasis QR code dan pemesanan instan yang elegan untuk restoran, kafe, hotel, serta berbagai lini bisnis ritel modern[cite: 4].
+                    </p>
+                </div>
+                <div>
+                    <a href="https://drive.google.com/drive/folders/19v3eVwERFfoOZowxprFv6w-eRYUUGxRD?usp=sharing" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Unduh Aplikasi (.apk)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produk 4: Sales Monitoring & Geolokasi -->
+            <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div>
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                        <img src="SALES MONITORING.webp" alt="Sales Monitoring" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
+                        <span>Sales Monitoring</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Aplikasi pemantauan aktivitas sales canvassing secara akurat lengkap dengan sistem pelacakan geolokasi GPS real-time untuk optimalisasi kinerja tim lapangan[cite: 5].
+                    </p>
+                </div>
+                <div>
+                    <a href="https://drive.google.com/drive/folders/1eFL-fk0TlLacMLQ3luf1xdiztn96tULZ?usp=sharing" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Unduh Aplikasi (.apk)</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produk 5: Marketing Report & Analytics -->
+            <div class="glass-card rounded-3xl p-6 flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                <div>
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                        <img src="MARKETING REPORT.webp" alt="Marketing Report" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-gray-950/80 via-transparent to-transparent"></div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
+                        <span>Marketing Report</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                    </h3>
+                    <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        Pusat analitik laporan pemasaran digital terpadu dengan metrik performa tingkat lanjut untuk mendongkrak konversi bisnis Anda secara maksimal.
+                    </p>
+                </div>
+                <div>
+                    <a href="https://drive.google.com/drive/folders/1E6b55K8Lw1msNLOmqvVr7MliVHtyWmW2?usp=sharing" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                        <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
+                        <span>Unduh Aplikasi (.apk)</span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="relative z-10 w-full py-6 text-center text-xs text-gray-500 border-t border-gray-800/80 mt-12 bg-gray-950/50 backdrop-blur-md">
+        <p>© 2026 Karsadiguna Digital. All rights reserved. Secured by AI Cloud Protocol.</p>
+    </footer>
+
+    <!-- STICKY WA BAWAH KANAN DENGAN ROBOT AI MENGAMBANG -->
+    <div class="fixed bottom-6 right-6 z-50 flex items-end space-x-3 pointer-events-auto">
+        <!-- Robot Chat Bubble -->
+        <div class="hidden md:block bg-gray-900/90 text-cyan-300 px-4 py-2.5 rounded-2xl border border-cyan-500/40 text-xs shadow-xl shadow-cyan-500/20 backdrop-blur-md animate-pulse">
+            🤖 Halo! Ada aplikasi yang ingin didiskusikan?
+        </div>
+        <!-- Floating Robot Button -->
+        <a href="https://wa.me/6285222952220?text=Halo%20Karsadiguna%20Digital,%20saya%20butuh%20bantuan%20konsultasi%20aplikasi." target="_blank" class="floating-robot relative w-16 h-16 rounded-3xl bg-gradient-to-tr from-cyan-600 via-blue-600 to-teal-400 p-0.5 shadow-2xl shadow-cyan-500/50 flex items-center justify-center group hover:scale-110 transition-transform">
+            <div class="w-full h-full bg-gray-950 rounded-[22px] flex items-center justify-center relative overflow-hidden">
+                <!-- Robotic Circuits Aksen -->
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.3)_0%,transparent_70%)]"></div>
+                <!-- Ikon Robot / AI -->
+                <svg class="w-8 h-8 text-cyan-400 group-hover:rotate-12 transition-transform drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                <!-- Online Green LED -->
+                <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-emerald-400 rounded-full animate-ping"></span>
+                <span class="absolute top-2 right-2 w-2.5 h-2.5 bg-emerald-500 rounded-full"></span>
+            </div>
+        </a>
+    </div>
+
+    <!-- Script JavaScript untuk Bintang Kerlap-Kerlip Dinamis -->
+    <script>
+        const starfield = document.getElementById('starfield');
+        const count = 75; // Jumlah bintang
+        for (let i = 0; i < count; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const size = Math.random() * 2.5 + 1;
+            const duration = Math.random() * 3 + 2;
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.setProperty('--duration', `${duration}s`);
+            starfield.appendChild(star);
+        }
+    </script>
+</body>
+</html>
