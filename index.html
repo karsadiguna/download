@@ -78,6 +78,7 @@ body {
     backdrop-filter: blur(20px);
     border: 1px solid rgba(56, 189, 248, 0.2);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
 }
 .glass-card:hover {
     border-color: rgba(56, 189, 248, 0.8);
@@ -114,9 +115,86 @@ body {
 .floating-robot {
     animation: floatRobot 4s ease-in-out infinite;
 }
+
+/* ANIMASI LOADING ROTASI ROBOT AI BERPUTAR KENCANG */
+@keyframes aiSpin {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.1); filter: drop-shadow(0 0 25px rgba(236, 72, 153, 0.8)); }
+    100% { transform: rotate(360deg) scale(1); }
+}
+.robot-spinning {
+    animation: aiSpin 1.8s infinite cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Robot Kecil Pemegang Card */
+.card-robot-helper {
+    position: absolute;
+    top: -20px;
+    right: 15px;
+    background: linear-gradient(135deg, #ec4899, #8b5cf6);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(236, 72, 153, 0.6);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    z-index: 10;
+    animation: floatRobot 3s ease-in-out infinite;
+    border: 1px solid rgba(255,255,255,0.4);
+}
 </style>
 </head>
-<body class="relative min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white">
+<body class="relative min-h-screen flex flex-col justify-between selection:bg-pink-500 selection:text-white">
+
+    <!-- MODAL LOADING & PENYAMBUT KUNJUNGAN (ROBOT AI CUSTOM BERPUTAR) -->
+    <div id="welcomePopup" class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-xl px-4 transition-opacity duration-700">
+        <div class="glass-card max-w-lg w-full rounded-3xl p-8 text-center relative border border-pink-500/50 shadow-[0_0_70px_rgba(236,72,153,0.5)]">
+            <!-- Glow Latar Belakang -->
+            <div class="absolute -top-12 left-1/2 -translate-x-1/2 w-32 h-32 bg-pink-500/30 rounded-full blur-3xl"></div>
+            
+            <!-- REPLIKA ROBOT AI KUSTOM (DARI GAMBAR ANDA) BERPUTAR -->
+            <div class="w-24 h-24 mx-auto mb-6 rounded-3xl bg-gradient-to-tr from-slate-900 to-indigo-950 flex items-center justify-center shadow-2xl shadow-pink-500/60 border-2 border-pink-500/60 robot-spinning relative">
+                <!-- Antena Kiri -->
+                <div class="absolute -top-3 left-3 w-1.5 h-4 bg-pink-500 rounded-full"></div>
+                <div class="absolute -top-4 left-2 w-3 h-3 bg-pink-500 rounded-full animate-ping"></div>
+                <!-- Antena Kanan -->
+                <div class="absolute -top-3 right-3 w-1.5 h-4 bg-pink-500 rounded-full"></div>
+                <div class="absolute -top-4 right-2 w-3 h-3 bg-pink-500 rounded-full"></div>
+                <!-- Topi Kuning -->
+                <div class="absolute top-1 w-8 h-2.5 bg-amber-400 rounded-full"></div>
+                
+                <!-- Wajah Robot -->
+                <svg class="w-14 h-14 text-indigo-200" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M5 8h14a3 3 0 013 3v5a3 3 0 01-3 3H5a3 3 0 01-3-3v-5a3 3 0 013-3zm2 2v4h4v-4H7zm8 0v4h4v-4h-4zm-4 7h2v2h-2v-2z"/>
+                </svg>
+            </div>
+
+            <h3 class="text-2xl md:text-3xl font-extrabold text-white mb-2 tracking-wide">
+                🤖 SELAMAT DATANG!
+            </h3>
+            
+            <!-- Kotak Penekanan Biaya Operasional -->
+            <div class="my-4 p-4 rounded-2xl bg-gradient-to-r from-pink-950/70 via-indigo-950/80 to-gray-900 border border-pink-500/40 shadow-inner">
+                <p class="text-pink-300 font-bold text-sm md:text-base leading-relaxed">
+                    ⚡ Pangkas Biaya Operasional Secara Otomatis Pakai Aplikasi Ini.
+                </p>
+            </div>
+
+            <p class="text-gray-400 text-xs md:text-sm leading-relaxed mb-8">
+                Inisialisasi sistem cerdas berkecepatan tinggi berhasil dimuat. Siap mendongkrak performa bisnis Anda.
+            </p>
+
+            <div class="space-y-3">
+                <button onclick="closePopup()" class="w-full py-4 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white font-bold text-sm shadow-lg shadow-pink-500/40 transition-all border border-pink-400/40 btn-live-glow">
+                    🚀 Masuk ke Portal Aplikasi
+                </button>
+                <p class="text-[11px] text-pink-400 font-mono tracking-widest uppercase">TERIMA KASIH TELAH MENGUNJUNGI PLATFORM KAMI</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Efek Latar Belakang Komputerisasi & Petir -->
     <div class="tech-bg"></div>
@@ -126,14 +204,14 @@ body {
     <!-- Header / Navbar Minimalis dengan Sinyal Record Berkedip -->
     <header class="relative z-10 w-full py-6 px-6 max-w-7xl mx-auto flex justify-between items-center border-b border-gray-800/80 backdrop-blur-md">
         <div class="flex items-center space-x-3">
-            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-blue-600 via-cyan-500 to-teal-400 flex items-center justify-center font-extrabold text-xl shadow-lg shadow-cyan-500/40 text-white border border-cyan-300/30">
+            <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-pink-600 via-indigo-600 to-cyan-500 flex items-center justify-center font-extrabold text-xl shadow-lg shadow-pink-500/40 text-white border border-pink-300/30">
                 KD
             </div>
             <div>
                 <h1 class="font-extrabold text-lg tracking-wider text-white">KARSADIGUNA</h1>
                 <div class="flex items-center space-x-2">
                     <span class="w-2 h-2 rounded-full bg-red-500 blink-dot inline-block"></span>
-                    <p class="text-[10px] text-cyan-400 font-mono tracking-widest uppercase">AI SYSTEM ONLINE [REC]</p>
+                    <p class="text-[10px] text-pink-400 font-mono tracking-widest uppercase">AI SYSTEM ONLINE [REC]</p>
                 </div>
             </div>
         </div>
@@ -148,11 +226,11 @@ body {
     <main class="relative z-10 max-w-7xl mx-auto px-6 py-12 w-full flex-grow">
         <!-- Hero Section -->
         <div class="text-center max-w-3xl mx-auto mb-16">
-            <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-cyan-500/10 text-cyan-300 border border-cyan-500/30 inline-block mb-4 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+            <span class="px-4 py-1.5 rounded-full text-xs font-semibold bg-pink-500/10 text-pink-300 border border-pink-500/30 inline-block mb-4 shadow-[0_0_15px_rgba(236,72,153,0.2)]">
                 ⚡ PUSAT DOWNLOAD APLIKASI & SAAS BERBASIS AI
             </span>
             <h2 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
-                Koleksi Aplikasi Digital <span class="bg-gradient-to-r from-cyan-400 via-blue-400 to-teal-300 bg-clip-text text-transparent">Profesional & Produktif</span>
+                Koleksi Aplikasi Digital <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-300 bg-clip-text text-transparent">Profesional & Produktif</span>
             </h2>
             <p class="text-gray-400 text-base md:text-lg">
                 Pilih dan unduh sistem perangkat lunak bisnis modern berkecepatan tinggi langsung melalui tautan Google Drive resmi di bawah ini.
@@ -164,20 +242,23 @@ body {
             
             <!-- Produk 1: Aplikasi Report Marketing -->
             <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div class="card-robot-helper">
+                    <span>🤖 AI Handled</span>
+                </div>
                 <div>
-                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-pink-500/20 relative group">
                         <img src="https://github.com/karsadiguna/GAMBAR/blob/main/MARKETING%20REPORT.png?raw=true" alt="Report Marketing" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
                         <span>Report Marketing</span>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-mono">v1.0</span>
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Pusat analitik laporan pemasaran digital terpadu dengan metrik performa tingkat lanjut untuk mendongkrak konversi bisnis Anda secara maksimal.
                     </p>
                 </div>
                 <div>
-                    <a href="https://drive.google.com/file/d/1NmlE8Y1XBkO5QPRYZughNSB0F_CR-I6e/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                    <a href="https://drive.google.com/file/d/1NmlE8Y1XBkO5QPRYZughNSB0F_CR-I6e/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white font-bold text-center transition-all shadow-lg shadow-pink-600/30 flex items-center justify-center space-x-2 border border-pink-400/40 btn-live-glow">
                         <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>Unduh Aplikasi (.apk)</span>
                     </a>
@@ -186,20 +267,23 @@ body {
 
             <!-- Produk 2: Aplikasi Presensi Absensi Digital -->
             <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div class="card-robot-helper">
+                    <span>🤖 Auto Payroll</span>
+                </div>
                 <div>
-                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-pink-500/20 relative group">
                         <img src="https://github.com/karsadiguna/GAMBAR/blob/main/PRESENSI%20PRO.png?raw=true" alt="Presensi Absensi Digital" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
                         <span>Presensi Absensi Digital</span>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-mono">v1.0</span>
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Sistem manajemen kehadiran workforce, payroll, dan barcode divisi otomatis yang dirancang khusus untuk efisiensi operasional skala UMKM maupun perusahaan menengah[cite: 3].
                     </p>
                 </div>
                 <div>
-                    <a href="https://drive.google.com/file/d/1jxGg6Bt_Jbt2rUj5aAI22PUfy-HI8koz/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                    <a href="https://drive.google.com/file/d/1jxGg6Bt_Jbt2rUj5aAI22PUfy-HI8koz/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white font-bold text-center transition-all shadow-lg shadow-pink-600/30 flex items-center justify-center space-x-2 border border-pink-400/40 btn-live-glow">
                         <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>Unduh Aplikasi (.apk)</span>
                     </a>
@@ -208,20 +292,23 @@ body {
 
             <!-- Produk 3: Aplikasi QR Pro -->
             <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div class="card-robot-helper">
+                    <span>🤖 Smart QR</span>
+                </div>
                 <div>
-                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-pink-500/20 relative group">
                         <img src="https://github.com/karsadiguna/GAMBAR/blob/main/QRMENUPRO.jpg?raw=true" alt="QR Pro" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
                         <span>QR Pro</span>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-mono">v1.0</span>
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Solusi SaaS menu digital berbasis QR code dan pemesanan instan yang elegan untuk restoran, kafe, hotel, serta berbagai lini bisnis ritel modern[cite: 4].
                     </p>
                 </div>
                 <div>
-                    <a href="https://drive.google.com/file/d/1w0zHvIkHWAmHbFgXHwTBKIfsMph7Td3E/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                    <a href="https://drive.google.com/file/d/1w0zHvIkHWAmHbFgXHwTBKIfsMph7Td3E/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white font-bold text-center transition-all shadow-lg shadow-pink-600/30 flex items-center justify-center space-x-2 border border-pink-400/40 btn-live-glow">
                         <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>Unduh Aplikasi (.apk)</span>
                     </a>
@@ -230,20 +317,23 @@ body {
 
             <!-- Produk 4: Aplikasi Report Satelite Management -->
             <div class="glass-card rounded-3xl p-6 flex flex-col justify-between">
+                <div class="card-robot-helper">
+                    <span>🤖 Live Report</span>
+                </div>
                 <div>
-                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-pink-500/20 relative group">
                         <img src="https://github.com/karsadiguna/GAMBAR/blob/main/REPORT%20SATELITE.png?raw=true" alt="Report Satelite Management" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
                         <span>Report Satelite Management</span>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-mono">v1.0</span>
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Platform checklist tugas operasional dan pelaporan terintegrasi secara real-time yang menghubungkan pekerja lapangan, supervisor, hingga tingkat manajemen puncak[cite: 2].
                     </p>
                 </div>
                 <div>
-                    <a href="https://drive.google.com/file/d/1--qVrOHiwNXFyIhs5VlXFSNTKxBv0PEQ/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                    <a href="https://drive.google.com/file/d/1--qVrOHiwNXFyIhs5VlXFSNTKxBv0PEQ/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white font-bold text-center transition-all shadow-lg shadow-pink-600/30 flex items-center justify-center space-x-2 border border-pink-400/40 btn-live-glow">
                         <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>Unduh Aplikasi (.apk)</span>
                     </a>
@@ -252,20 +342,23 @@ body {
 
             <!-- Produk 5: Aplikasi Sales Monitoring -->
             <div class="glass-card rounded-3xl p-6 flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                <div class="card-robot-helper">
+                    <span>🤖 GPS Tracking</span>
+                </div>
                 <div>
-                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-cyan-500/20 relative group">
+                    <div class="overflow-hidden rounded-2xl mb-5 aspect-video bg-gray-900 border border-pink-500/20 relative group">
                         <img src="https://github.com/karsadiguna/GAMBAR/blob/main/SALES%20MONITORING.png?raw=true" alt="Sales Monitoring" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                     </div>
                     <h3 class="text-2xl font-bold text-white mb-2 flex items-center justify-between">
                         <span>Sales Monitoring</span>
-                        <span class="text-xs px-2.5 py-1 rounded-full bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-mono">v1.0</span>
+                        <span class="text-xs px-2.5 py-1 rounded-full bg-pink-500/20 text-pink-300 border border-pink-500/30 font-mono">v1.0</span>
                     </h3>
                     <p class="text-gray-400 text-sm leading-relaxed mb-6">
                         Aplikasi pemantauan aktivitas sales canvassing secara akurat lengkap dengan sistem pelacakan geolokasi GPS real-time untuk optimalisasi kinerja tim lapangan[cite: 5].
                     </p>
                 </div>
                 <div>
-                    <a href="https://drive.google.com/file/d/1DVT4XBSfvDtct3Jc8s4CC8tnmBaPV3R2/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-bold text-center transition-all shadow-lg shadow-cyan-600/30 flex items-center justify-center space-x-2 border border-cyan-400/40 btn-live-glow">
+                    <a href="https://drive.google.com/file/d/1DVT4XBSfvDtct3Jc8s4CC8tnmBaPV3R2/view?usp=drive_link" target="_blank" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-pink-600 to-indigo-600 hover:from-pink-500 hover:to-indigo-500 text-white font-bold text-center transition-all shadow-lg shadow-pink-600/30 flex items-center justify-center space-x-2 border border-pink-400/40 btn-live-glow">
                         <svg class="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                         <span>Unduh Aplikasi (.apk)</span>
                     </a>
@@ -283,16 +376,16 @@ body {
     <!-- STICKY WA BAWAH KANAN DENGAN ROBOT AI MENGAMBANG -->
     <div class="fixed bottom-6 right-6 z-50 flex items-end space-x-3 pointer-events-auto">
         <!-- Robot Chat Bubble -->
-        <div class="hidden md:block bg-gray-900/90 text-cyan-300 px-4 py-2.5 rounded-2xl border border-cyan-500/40 text-xs shadow-xl shadow-cyan-500/20 backdrop-blur-md animate-pulse">
+        <div class="hidden md:block bg-gray-900/90 text-pink-300 px-4 py-2.5 rounded-2xl border border-pink-500/40 text-xs shadow-xl shadow-pink-500/20 backdrop-blur-md animate-pulse">
             🤖 Halo! Ada aplikasi yang ingin didiskusikan?
         </div>
         <!-- Floating Robot Button -->
-        <a href="https://wa.me/6285222952220?text=Halo%20Karsadiguna%20Digital,%20saya%20butuh%20bantuan%20konsultasi%20aplikasi." target="_blank" class="floating-robot relative w-16 h-16 rounded-3xl bg-gradient-to-tr from-cyan-600 via-blue-600 to-teal-400 p-0.5 shadow-2xl shadow-cyan-500/50 flex items-center justify-center group hover:scale-110 transition-transform">
+        <a href="https://wa.me/6285222952220?text=Halo%20Karsadiguna%20Digital,%20saya%20butuh%20bantuan%20konsultasi%20aplikasi." target="_blank" class="floating-robot relative w-16 h-16 rounded-3xl bg-gradient-to-tr from-pink-600 via-purple-600 to-cyan-500 p-0.5 shadow-2xl shadow-pink-500/50 flex items-center justify-center group hover:scale-110 transition-transform">
             <div class="w-full h-full bg-gray-950 rounded-[22px] flex items-center justify-center relative overflow-hidden">
                 <!-- Robotic Circuits Aksen -->
-                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.3)_0%,transparent_70%)]"></div>
-                <!-- Ikon Robot / AI -->
-                <svg class="w-8 h-8 text-cyan-400 group-hover:rotate-12 transition-transform drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.3)_0%,transparent_70%)]"></div>
+                <!-- Ikon Robot AI -->
+                <svg class="w-8 h-8 text-pink-400 group-hover:rotate-12 transition-transform drop-shadow-[0_0_8px_rgba(236,72,153,0.8)]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                 </svg>
                 <!-- Online Green LED -->
@@ -302,8 +395,18 @@ body {
         </a>
     </div>
 
-    <!-- Script JavaScript untuk Bintang Kerlap-Kerlip Dinamis -->
+    <!-- Script JavaScript untuk Bintang & Penutup Popup -->
     <script>
+        // Fungsi Tutup Popup Selamat Datang
+        function closePopup() {
+            const popup = document.getElementById('welcomePopup');
+            popup.style.opacity = '0';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 500);
+        }
+
+        // Starfield Background Dinamis
         const starfield = document.getElementById('starfield');
         const count = 75; // Jumlah bintang
         for (let i = 0; i < count; i++) {
